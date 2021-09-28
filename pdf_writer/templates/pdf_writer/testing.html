@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+
+{% block Style %}
+  <style>
+
+    body { 
+      background: yellow !important;
+    }
+
+
+  </style>
+{% endblock Style %}
+
+{% block Content %}
+  <div class="container">
+    <section class="pdf">
+      <div class="pdf-header text-center py-4">
+        <p class="display-3">DANFOS <span class='h1'>AUTO</span></p>
+        <h2>ENGINEERING AND CONSULTANCY</h2>
+      </div>
+      <div class="pdf-body d-flex flex-column g-3">
+        <div class="form-group">
+          <small class="h6"><em>Company information</em></small><br />
+          <p for="" class="py-2">Danfos Auto Engeering & Consultancy </p>
+          <p for=""class="py-2">Telephone: <b>054547561</b>/<b>05548068282</b></p>
+        </div>
+        <div class="text-center py-4">
+          <small class="display-6">INVOICE#</small><em class="text-muted">234566</em>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <p class="">
+              <label for="" class="text-muted">Name: </label>
+              Yaw Ebenezer
+            </p>
+            <p class="">
+              <label for="" class="text-muted">Contact: </label> ### - ### - ####
+            </p>
+          </div>
+          <div class="col-6">
+            <p class="">
+              <label for="" class="text-muted">Reg No: </label>
+              Yaw Ebenezer
+            </p>
+            <p class="">
+              <label for="" class="text-muted">Vehicle type: </label> ### - ### - ####
+            </p>
+          </div>
+        </div><!-- /ROW -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Description 1</td>
+              <td>*****.00</td>
+            </tr>
+            <tr>
+              <td>Description 1</td>
+              <td>*****.00</td>
+            </tr>
+            <tr>
+              <td>Description 1</td>
+              <td>*****.00</td>
+            </tr>
+            <tr>
+              <td>Description 1</td>
+              <td>*****.00</td>
+            </tr>
+            <tr>
+              <td>Description 1</td>
+              <td>*****.00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class='text-end'>SUBTOTAL:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class='text-end'>GRAND TOTAL:</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+  </div>
+{% endblock Content %}

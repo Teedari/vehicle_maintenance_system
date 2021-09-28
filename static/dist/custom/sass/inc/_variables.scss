@@ -1,0 +1,21 @@
+$color-one: #3333EE;
+$color-two: #69a3b0;
+$color-three: #342c49;
+$color-four: #ff0022;
+$color-five: #7a7485;
+$color-six: #f4f4f4;
+$color-seven: #ffffff;
+
+
+
+$colors : (
+  "primaryColor": $color-one,
+  "primaryAltColor": darken($color: $color-one, $amount: 40),
+  "secondaryColor": $color-two,
+  "brownColor": $color-three,
+  "grayColor": $color-five,
+  "redColor": $color-four,
+  "whiteColor": $color-seven,
+  "bgColor": $color-six 
+);
+

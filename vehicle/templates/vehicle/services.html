@@ -1,0 +1,222 @@
+{% extends "admin_base.html" %}
+
+{% block Title %}
+  Register Vehicle
+{% endblock Title %}
+
+{% block Content %}
+  
+  <div class="container">
+    <h3 class="display-5 py-4">Services</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <hr>
+        <h6 class="text-primary ">New service</h6>
+        <hr>
+        <form action="" method='POST' id='service-form'>
+          {% csrf_token %}
+          <div class="form-group py-2">
+            <label for="">Title</label>
+            {{form.text}}
+          </div>
+          <div class="form-group py-2">
+            <label for="">Cost</label>
+            {{form.cost}}
+          </div>
+          <div class="d-flex justify-content-end">
+            <button type='submit' class="px-4 py-2 btn btn-default button-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <table class="table" id='service-table'>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Description</th>
+              <th>Cost</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+        <div class="text-center d-flex flex-column justify-content-center gap-3" id="no-data">
+          <div>
+            <img class='' width='30%' src="http://127.0.0.1:8000/media/svg/no-data.svg" />
+          </div>
+          <small>No data</small>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock Content %}
+
+{% block Script %}
+  <script>
+    
+    
+    $('document').ready(function(){
+      var state = {
+        data: [],
+        loading: false
+      }
+      const alertToast = (text, success = true) => {
+        const classStr = success ? 'bg-success' : 'bg-danger'
+        const liveToast = document.getElementById('liveToast')
+        const toast = new bootstrap.Toast(liveToast)
+        $('.toast > .toast-header > .title').text('Service Alert')
+        $('.toast').addClass(classStr)
+        $('.toast>.toast-header').addClass(classStr)
+        $('.toast .toast-body').text(text)
+        toast.show()
+      }
+
+
+      function deleteService(){
+        // GET QUERYSET
+        const ID = this.id.slice(2)
+        $.ajax({
+          url: '{% url "vehicle:service" %}',
+          type: 'GET',
+          data:{type: 'delete', ID},
+          success: (res) => {
+            state = {...state, loading: false, data: res.data}
+            console.log('Success Delete: ', res)
+           
+            loadTable()
+          },
+          error: (res) => {
+            console.log('Failure Response: ', res)
+          }
+        })
+        
+      }
+
+
+      const tbody = str => {
+        $('#service-table').children('tbody')
+          .html(str)
+      }
+      
+      const tr = obj =>`<tr>
+        <td>#</td>
+        <td>${obj.text}</td>
+        <td>${obj.cost}</td>
+        <td class='text-danger'>
+          <button class='btn btn-danger text-white delete-service'  id = "##${obj.id}">
+            <i class='fa fa-trash'></i>
+          </button>
+        </td>
+      </tr>
+      `
+      
+      const loadTable = () => {
+        var trStr = ''
+
+        if(state.data.length === 0){
+          console.log('no data')
+          $('#no-data').addClass('d-dlex');
+        }
+        if(state.data.length !== 0){
+     
+          $('#no-data').addClass('d-none');
+        }
+
+          $.each(state.data, (_, obj) => {
+            trStr += tr(obj)
+          })
+          tbody(trStr)
+  
+          // Delete service
+          const nodes = document.querySelectorAll('.delete-service');
+          nodes.forEach( el => {
+            el.addEventListener('click', deleteService)
+          })
+      
+
+
+      }
+
+      const postData = function(e){
+        e.preventDefault()
+        console.log('Data: ' + $(this).serialize());
+        // POST REQUEST
+        $.ajax({
+          url: "{% url 'vehicle:service' %}",
+          type: 'POST',
+          data: $(this).serialize(),
+          success: function(res){
+           
+            console.log(res)
+            alertToast('Service saved successfully')
+
+            getData()
+            setTimeout(()=>{
+
+              loadTable()
+            }, 1000)
+          
+          },
+          error: function(err){
+            console.log(err.message)
+            alertToast('Service saved successfully')
+          }
+        })
+      }
+
+
+    
+
+   function getData(){
+        // GET QUERYSET
+        $.ajax({
+          url: '{% url "vehicle:service" %}',
+          type: 'GET',
+          success: (res) => {
+            state = {...state, loading: false, data: res.data}
+            console.log('Success Response: ', res)
+            console.log('State: ', state.data)
+          },
+          error: (res) => {
+            console.log('Failure Response: ', res)
+          }
+        })
+      }
+
+
+
+
+
+
+      // POST FORMS
+
+      $('.form-group input').addClass('form-control')
+
+      // Post Data
+      $('#service-form').on('submit', postData)
+      
+      //Retrieve Data
+
+      getData();
+
+
+
+      //Populate table
+      const t =  setInterval(function(){
+          if(state.data.length !== 0){
+            $('#no-data').addClass('d-none');
+
+            loadTable()
+
+            alertToast('Data loaded completely')
+            
+            clearInterval(t)
+          }
+        }, 3000)
+    })
+  </script>
+{% endblock Script %}

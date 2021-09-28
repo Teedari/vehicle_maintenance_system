@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style type="text/css">
+  
+    body { 
+     
+      font-size: 14px;
+      
+    }
+    span{
+      border: 1px solid black;
+    }
+    .p-4{
+      padding-right: 2rem;
+    }
+    .row, .d-flex{
+      display: flex;
+    }
+
+    .row div[class^='col']{
+      width: 100%;
+      flex: 0;
+    }
+
+    .text-center{
+      text-align: center;
+    }
+
+
+    .split{
+      display: flex;
+      flex-flow: row;
+    }
+
+    .table tbody{
+      border:  1px solid #222;
+    }
+  
+    .table th{
+      border-bottom: 1px solid #ccc;
+      padding: .8rem;
+    }
+    .table td{
+      padding: .5rem 0;
+      text-align: center;
+    }
+
+    .display{
+      font-size: 2rem;
+    }
+
+    .border{
+      padding: 1rem;
+      border: 1px solid #ccc;
+      color: red;
+    }
+  
+    .table .text-end{
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  
+
+
+
+  <div class="container">
+  
+    <br />
+    <br />
+    <section class="pdf">
+      <div class="pdf-header text-center py-4">
+        <p class="display">DANFOS <span class="border">AUTO</span></p>
+        <h2>ENGINEERING AND CONSULTANCY</h2>
+      </div>
+      <div class="pdf-body d-flex flex-column g-3">
+        <div class="form-group">
+          <small class="h6"><em>Company information</em></small>
+          <p for="" class="py-2">Danfos Auto Engeering & Consultancy </p>
+          <p for=""class="py-2">Telephone: <b>054547561</b>/<b>05548068282</b></p>
+        </div>
+        <div class="text-center py-4">
+          <small class="display-6">INVOICE#</small><em class="text-muted">{{singleton.token}}</em>
+        </div>
+        <div class="divide">
+          <div class="split">
+            <p class="">
+              <label for="" class="text-muted">Name: </label>
+              {{singleton.customer}}
+            </p>
+            <p class="">
+              <label for="" class="text-muted">Contact: </label> 
+              {{singleton.contact}}
+            </p>
+          </div>
+          <div class="split">
+            <p class="">
+              <label for="" class="text-muted">Reg No: </label>
+              {{singleton.vehicle}}
+            </p>
+            <p class="">
+              <label for="" class="text-muted">Vehicle type: </label> {{singleton.vehicle_type}}
+            </p>
+          </div>
+        </div><!-- /ROW -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for dt in data %}
+            <tr>
+              <td>{{dt.service_detail}}</td>
+              <td class='text-center'>{{dt.amount}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class='text-end'>
+              <small class="p-4">  TERMS AND CONDITIONS</small>  
+                SUBTOTAL:
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class='text-end'>
+               <small> CUSTOMERS ARE TO PAY 70% OF THE TOTAL</small>
+                GRAND TOTAL:</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+        <h4 class="text-center">THANK YOU FOR YOUR BUSINESS</h4>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

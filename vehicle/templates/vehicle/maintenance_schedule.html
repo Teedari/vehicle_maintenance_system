@@ -1,0 +1,80 @@
+{% extends "admin_base.html" %}
+
+{% block Title %}
+  Register Vehicle
+{% endblock Title %}
+
+{% block Content %}
+  
+  <div class="container">
+    <h3 class="display-5 py-4">Schedule Maintenance</h3>
+    <div class="card shadow p-4">
+      <table id="customer-table" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Vehicle</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          {% if customers %}
+            {% for customer in customers  %}
+              <tr>
+                <td>{{customer.fullname}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.address}}</td>
+                <td>{{customer.get_vehicle}}</td>
+                <td class='text-danger'>
+                  <button class='btn btn-danger text-white delete-service'  id = "##${customer.id}">
+                    <i class='fa fa-trash'></i>
+                  </button>
+                </td>
+              </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+      {% if customers is None %}
+      <div class="text-center d-flex flex-column justify-content-center align-items-center gap-3" id="no-data">
+        <div class="no-data-image">
+          <img class='w-50' width="50" src="http://127.0.0.1:8000/media/svg/no-data.svg" />
+        </div>
+        <small>No data</small>
+      </div>
+      {% endif %}
+    </div>
+      <!-- Modal -->
+    <div class="modal fade" id="schedule-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- /Modal -->
+  </div>
+{% endblock Content %}
+
+{% block Script %}
+  <script>
+    $('document').ready(function(){
+      $('#customer-table').DataTable()
+      const modal = document.getElementById('schedule-modal')
+      const bs = new bootstrap.Modal(modal)
+      bs.show()
+    })
+  </script>
+{% endblock Script %}

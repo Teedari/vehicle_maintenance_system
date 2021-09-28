@@ -1,0 +1,144 @@
+{% extends "admin_base.html" %}
+
+{% block Title %}
+  Dashboard
+{% endblock Title %}
+
+{% block Content %}
+
+  <!-- <div class="loading-screen d-none">
+    <div class="spinner-border text-white" style='font-size: 10rem;' role="status">
+      <span class="visually-hidden text-white"></span>
+      <span style='font-size: 1rem;'>..</span>
+    </div>
+    <p class='display-4'>Loading ...</p>
+  </div> -->
+  
+  <div class="container mt-4">
+    <div class="greeting ">
+      <h3>Hello, <span class='span-1'>Tibanninah Eben</span> <span class="span-2">&#9995</span></h3>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8 ">
+        <div class="mycard shadow bg-warning text-white mb-4">
+          <div class="mycard-icon bg-warning shadow">
+            <i class="fa fa-users"></i>
+          </div>
+          <p class="mycard-text">Number of customers</p>
+          <div class="mycard-sum ">
+            <h4>{{data.customers}}</h4>
+          </div>
+        </div>
+        <div class="reports">
+          <div class="mycard shadow">
+            <div class="mycard-icon">
+              <i class="fa fa-car"></i>
+            </div>
+            <p class="mycard-text">Total number of vehicles registered</p>
+            <div class="mycard-sum">
+              <h4>{{data.vehicles}}</h4>
+            </div>
+          </div>
+          <div class="mycard shadow">
+            <div class="mycard-icon">
+              <i class="fa fa-server"></i>
+            </div>
+            <p class="mycard-text">Number of services rendered</p>
+            <div class="mycard-sum">
+              <h4>{{data.maintenance}}</h4>
+            </div>
+          </div>
+          <div class="mycard shadow">
+            <div class="mycard-icon">
+              <i class="fa fa-fire-extinguisher"></i>
+            </div>
+            <p class="mycard-text">Number of services</p>
+            <div class="mycard-sum">
+              <h4>{{data.services}}</h4>
+            </div>
+          </div>
+          <div class="mycard shadow text-white">
+            <div class="mycard-icon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <p class="mycard-text">Total number of schedules</p>
+            <div class="mycard-sum ">
+              <h4>55</h4>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-md-4">
+        <div class="maintenace-list">
+          <h4>Maintenance Schedules</h4>
+
+          <div class="tile">
+            <div class="tile-start">
+              <p>GJ</p>
+            </div>
+            <div class="tile-body">
+              <p>Maxime et aperiam.</p>
+              <p class="text-muted">22:00 - 12th March</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-start">
+              <p>GJ</p>
+            </div>
+            <div class="tile-body">
+              <p>Maxime et aperiam.</p>
+              <p class="text-muted">22:00 - 12th March</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-start">
+              <p>GJ</p>
+            </div>
+            <div class="tile-body">
+              <p>Maxime et aperiam.</p>
+              <p class="text-muted">22:00 - 12th March</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-start">
+              <p>GJ</p>
+            </div>
+            <div class="tile-body">
+              <p>Maxime et aperiam.</p>
+              <p class="text-muted">22:00 - 12th March</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-start">
+              <p>GJ</p>
+            </div>
+            <div class="tile-body">
+              <p>Maxime et aperiam.</p>
+              <p class="text-muted">22:00 - 12th March</p>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="tile-start">
+              <p>GJ</p>
+            </div>
+            <div class="tile-body">
+              <p>Maxime et aperiam.</p>
+              <p class="text-muted">22:00 - 12th March</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- /ROW -->
+    
+  </div>
+{% endblock Content %}
+
+{% block Script %}
+  
+<script>
+  
+</script>
+
+{% endblock Script %}

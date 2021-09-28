@@ -1,0 +1,61 @@
+@mixin nav-link-effect {
+  &::before{
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    
+    transform: translateX(-72%);
+    background-color: rgba(255, 255, 255, 0.349);
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+}
+
+
+// create card
+
+@mixin createCardType1($color) {
+  background: lighten($color: Colors($color), $amount: 40);
+  .mycard-icon{
+    background: lighten($color: Colors($color), $amount: 20);
+    i{
+      color: Colors('whiteColor');
+    }
+  }
+}
+
+
+@function getTextColor($color){
+  @return #fff;
+  // @if(darkness(Colors($color)) > 40){
+  //   @return #fff;
+  // }@else{
+  //   @return #111222;
+  // }
+}
+
+
+// Create a button
+
+@mixin createButton($key, $color) {
+  .button-#{$key}{
+    background-color: Colors($color);
+    color: getTextColor(Colors($color)) !important;
+    &-outline{
+      background-color: none;
+      border: 1px solid Colors($color);
+      color: Colors($color) !important;
+    }
+  }
+  
+}
+
+
+// Functions
+
+@function Colors($key){
+  @return map-get($map: $colors, $key: $key);
+}

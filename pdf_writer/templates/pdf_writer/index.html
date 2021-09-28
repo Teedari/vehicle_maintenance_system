@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block Title %}
+  PDF reader
+{% endblock Title %}
+
+
+{% block Content %}
+  
+  <div class="container">
+    <h3 class="display-3">PDF Vechicle</h3>
+    <a target='blank' href="{% url 'pdf_writer:preview' %}" class="btn btn-primary">Preview</a>
+  </div>
+{% endblock Content %}

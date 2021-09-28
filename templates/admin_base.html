@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="{% static 'dist/plugins/bootstrap/css/bootstrap.css' %}">
+
+
+    <!-- FONTAWESOME CSS -->
+    <link rel="stylesheet" href="{% static 'dist/plugins/font-awesome/css/font-awesome.css' %}">
+  
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="{% static 'dist/custom/css/main.css' %}">
+
+    <!-- DATA TABLES -->
+    <link rel="stylesheet" href="{% static 'dist/plugins/data-tables/datatables.min.css' %}">
+
+    <!-- AWESOME ALERT -->
+    <link rel="stylesheet" href="{% static 'dist/plugins/awesome-alert/css/style.css' %}">
+  
+    <!-- JQUERY JS -->
+    <script src="{% static 'dist/plugins/jquery/jquery.3.2.1.min.js' %}"></script>
+  
+    <!-- BOOTSTRAP JS -->
+    <script src="{% static 'dist/plugins/bootstrap/js/bootstrap.js' %}"></script>
+
+    <!-- DATA TABLE JS-->
+    <script src="{% static 'dist/plugins/data-tables/datatables.min.js' %}"></script>
+
+    <!-- AWESOME ALERT JS-->
+    <script src="{% static 'dist/plugins/awesome-alert/js/index.var.js' %}"></script>
+  
+    <!-- CUSTOM JS -->
+    <script defer src="{% static 'dist/custom/js/main.js' %}"></script>
+
+    <!-- TODO: try to fix the Title -->
+  <title>
+    Vehicle Management - {% block Title %}{% endblock Title %} 
+  </title>
+
+</head>
+<body>
+<div class='dashboard'>
+  {% include "includes/sidebar.html" %}
+  
+  <div class="dashboard-content">
+    {% include "includes/navbar.html" %}
+    {% block Content %}
+   
+    {% endblock Content %}
+  </div>
+</div>
+<div class="position-fixed bottom-0 end-0 p-3 my-toast__success" style="z-index: 11">
+  <div id="liveToast" class=" toast text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-success text-white">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto title">Title</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+       This is a toast message.
+    </div>
+  </div>
+</div>
+
+{% block Script %}
+
+{% endblock Script %}
+{% include "includes/footer.html" %}

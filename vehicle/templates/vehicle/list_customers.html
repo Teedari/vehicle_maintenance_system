@@ -1,0 +1,62 @@
+{% extends "admin_base.html" %}
+
+{% block Title %}
+  Register Vehicle
+{% endblock Title %}
+
+{% block Content %}
+  
+  <div class="container">
+    <h3 class="display-5 py-4">All Customers</h3>
+    <div class="card shadow p-4">
+      <table id="customer-table" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Vehicle</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          {% if customers %}
+            {% for customer in customers  %}
+              <tr>
+                <td>{{customer.fullname}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.address}}</td>
+                <td>{{customer.get_vehicle}}</td>
+                <td class='text-danger'>
+                  <a href='{% url "vehicle:maintenance_schedule" %}' class='btn btn-warning text-white delete-service'">
+                    <i class='fa fa-calendar-o'></i>
+                  </a>
+                  <button class='btn btn-danger text-white delete-service'  id = "##${customer.id}">
+                    <i class='fa fa-trash'></i>
+                  </button>
+                </td>
+              </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+      {% if customers is None %}
+        <div class="text-center d-flex flex-column justify-content-center gap-3" id="no-data">
+          <div class="no-data-image">
+            <img class='' width='30%' src="http://127.0.0.1:8000/media/svg/no-data.svg" />
+          </div>
+          <small>No data</small>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock Content %}
+
+{% block Script %}
+  <script>
+    $('document').ready(function(){
+      $('#customer-table').DataTable()
+    })
+  </script>
+{% endblock Script %}

@@ -1,0 +1,107 @@
+{% extends "admin_base.html" %}
+
+{% block Title %}
+  Register Vehicle
+{% endblock Title %}
+
+{% block Content %}
+  
+  <div class="container">
+    <h3 class="display-5">Rendering Service</h3>
+    {% if not data %}
+    <div class="text-center d-flex flex-column justify-content-center gap-3 mt-4" id="no-data">
+      <div class='m-auto' style='width: 400px;'>
+        <img class='' width='40%' src="http://127.0.0.1:8000/media/svg/no-data.svg" />
+      </div>
+      <small>No data</small>
+  </div>
+    {% endif %}
+    {% if data %}
+    <div class="row">
+      <div class="col-md-4">
+      <div class='position-sticky' style="top: 90px;">
+        <div class=" card my-4 shadow p-4 d-flex flex-column align-items-center gap-2 text-center customer-card" >
+          <h4 class='customer-card__title'>Customer</h4>
+          <div class="customer-initial">
+            <p>{{data.customer.get_initials}}</p>
+          </div>
+          <h6><i>{{data.customer.fullname}}</i></h6>
+          <p>{{data.customer.address}}</p>
+          <p><b>{{data.customer.phone}}</b></p>
+          <small class="text-muted">
+            <blockquote>{{data.customer.get_vehicle}}</blockquote>
+          </small>
+        </div>
+        <a target='blank' href="{% url 'pdf_writer:preview' 'token'  %}" id="print-btn" class="btn btn-outline-primary  my-2 shadow p-4 d-flex flex-column align-items-center gap-2 text-center customer-card d-none">
+    
+           <label for="" class="" style="font-size: 1.5rem;">Print <i class="fa fa-print"></i> </label>
+
+        </a>
+      </div>
+      </div>
+      <!-- sdf -->
+      <div class="col-md-8 mt-4">
+        <div class="scroll">
+          <!-- SERVICES CARD -->
+          <div class="service-rendered pb-4">
+            {% for service in data.services  %}
+            <div id="service-{{service.id}}" class="card service-card shadow p-4">
+              <div class="row">
+                <div class="col-4">
+                  <div class="image-container">
+                    <img class=''  src="http://127.0.0.1:8000/media/svg/car.svg" />
+                  </div>
+                </div>
+                <div class="col-8 ">
+                  <h6><b>Service:</b></h6>
+                  <p id="service-text" class="py-2">{{service.text}}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <small id="service-cost">{{service.cost}}</small>
+                    <button class="btn btn-default ml-auto">
+                      <i class="fa fa-check"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- TABLE -->
+          <div class="card">
+            <div class="card-header bg-primary text-white text-center py-4">
+              <p>Maintenance</p>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped table-hover" id="maintenance-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+                <caption>
+                  <div class="d-flex justify-content-between">
+  
+                    <h5>Total: </h5>
+                    <p id="table-total">0</p>
+                  </div>
+                  {% if data.customer %}
+                    <div class='py-2'>
+                      <button id="service-submit" class="btn btn-outline-primary">submit</button>
+                    </div>
+                  {% endif %}
+                </caption>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+{% endblock Content %}

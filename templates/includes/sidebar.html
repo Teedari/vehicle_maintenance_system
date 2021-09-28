@@ -1,0 +1,73 @@
+<div class="dashboard-sidebar">
+  <div class="header">
+    <div class="logo text-center">
+      <h3 class='h5'>
+        <i class="fa fa-car"></i>
+        VHS
+        <i class="fa fa-fire-extinguisher"></i>
+      </h3>
+    </div>
+  </div>
+  <div class="menu position-relative">
+    <p class="menu-title">General Menu</p>
+    <ul class="menu-nav">
+      <li class="menu-nav__item">
+        <a href="{% url 'vehicle:dashboard' %}" class="menu-nav__link active">
+          <div class="icon-box">
+            <i class="fa fa-desktop"></i>
+          </div>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="menu-nav__item">
+        <a href="{% url 'vehicle:vehicle_register' %}" class="menu-nav__link">
+          <div class="icon-box">
+            <i class="fa fa-car"></i>
+          </div>
+         <span> Register Vehicle</span>
+        </a>
+      </li>
+      <li class="menu-nav__item">
+        <a href="{% url 'vehicle:service' %}" class="menu-nav__link">
+          <div class="icon-box">
+            <i class="fa fa-server"></i>
+          </div>
+          <span> Services</span>
+        </a>
+      </li>
+      <li class="menu-nav__item">
+        <a href="{% url 'vehicle:list_of_services_rendered' %}" class="menu-nav__link">
+          <div class="icon-box">
+            <i class="fa fa-server"></i>
+          </div>
+          <span> List of Services Rendered</span>
+        </a>
+      </li>
+      <li class="menu-nav__item">
+        <a href="{% url 'vehicle:render_service' %}" class="menu-nav__link">
+          <div class="icon-box">
+            <i class="fa fa-fire-extinguisher"></i>
+          </div>
+         <span>Maintenance</span>
+        </a>
+      </li>
+      <li class="menu-nav__item">
+        <a href="{% url 'vehicle:maintenance_schedule' %}" class="menu-nav__link">
+          <div class="icon-box">
+            <i class="fa fa-calendar"></i>
+          </div>
+          <span>Maintenance Schedule</span>
+        </a>
+      </li>
+      <li class="menu-nav__item">
+        <a href="" class="menu-nav__link">
+          <div class="icon-box">
+            <i class="fa fa-th"></i>
+          </div>
+         <span> Reports</span>
+        </a>
+      </li>
+    </ul>
+    <a href="{% url 'auth_user:signOut' %}" class="btn btn-outline-primary button-logout position-absolute top-100 left-0 w-100 mt-4">Logout <i class="fa fa-user"></i></a>
+  </div>
+</div>

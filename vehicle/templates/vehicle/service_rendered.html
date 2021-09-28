@@ -1,0 +1,66 @@
+{% extends "admin_base.html" %}
+
+{% block Title %}
+  Register Vehicle
+{% endblock Title %}
+
+{% block Content %}
+  
+  <div class="container">
+    <h3 class="display-5 py-4">All Customers</h3>
+    <div class="card shadow p-4">
+      <table id="customer-table" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Invoices#</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Vehicle</th>
+            <th>Maintenance</th>
+            <th>Cost</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          {% if services_rendered %}
+            {% for rendered in services_rendered  %}
+              <tr>
+                <td>{{rendered.token}}</td>
+                <td>{{rendered.customer}}</td>
+                <td>{{rendered.contact}}</td>
+                <td>{{rendered.vehicle}}</td>
+                <td>{{rendered.service_detail}}</td>
+                <td>{{rendered.amount}}</td>
+                <td class='text-danger'>
+                  <a target='blank' href='{% url "pdf_writer:preview" rendered.token %}' class='btn btn-outline-success delete-service'  id = "##${rendered.token}">
+                    <i class='fa fa-eye'></i>
+                  </a>
+                  <!-- <button class='btn btn-danger text-white delete-service disabled'  id = "##${rendered.token}">
+                    <i class='fa fa-trash'></i>
+                  </button> -->
+                </td>
+              </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+      {% if services_rendered is None %}
+        <div class="text-center d-flex flex-column justify-content-center align-items-center gap-3" id="no-data">
+          <div class="no-data-image">
+            <img class='w-50' width="50" src="http://127.0.0.1:8000/media/svg/no-data.svg" />
+          </div>
+          <small>No data</small>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock Content %}
+
+{% block Script %}
+  <script>
+    $('document').ready(function(){
+      $('#customer-table').DataTable()
+    })
+  </script>
+{% endblock Script %}
