@@ -28,14 +28,18 @@
                 <td>{{customer.phone}}</td>
                 <td>{{customer.address}}</td>
                 <td>{{customer.get_vehicle}}</td>
-                <td class='text-danger'>
-                  <a href='{% url "vehicle:maintenance_schedule" %}' class='btn btn-warning text-white delete-service'">
-                    <i class='fa fa-calendar-o'></i>
-                  </a>
-                  <button class='btn btn-danger text-white delete-service'  id = "##${customer.id}">
+                <td class='text-danger d-flex'>
+                  <form action='{% url "vehicle:maintenance_schedule" %}' method="post">
+                    {% csrf_token %}
+                    <input type="checkbox" checked class='invisible' name="customer" value="{{customer.id}}" id="">
+                    <button type="submit" class='btn btn-warning text-white delete-service'">
+                      <i class='fa fa-calendar-o'></i>
+                    </a>
+                  </form>
+                  <!-- <button class='btn btn-danger text-white delete-service'  id = "##${customer.id}">
                     <i class='fa fa-trash'></i>
                   </button>
-                </td>
+                </td> -->
               </tr>
             {% endfor %}
           {% endif %}
@@ -57,6 +61,7 @@
   <script>
     $('document').ready(function(){
       $('#customer-table').DataTable()
+      $('.paginate_button').hide()
     })
   </script>
 {% endblock Script %}

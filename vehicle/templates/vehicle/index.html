@@ -16,7 +16,7 @@
   
   <div class="container mt-4">
     <div class="greeting ">
-      <h3>Hello, <span class='span-1'>Tibanninah Eben</span> <span class="span-2">&#9995</span></h3>
+      <h3>Hello, <span class='span-1'>{{request.user}}</span> <span class="span-2">&#9995</span></h3>
     </div>
     
     <div class="row">
@@ -64,7 +64,7 @@
             </div>
             <p class="mycard-text">Total number of schedules</p>
             <div class="mycard-sum ">
-              <h4>55</h4>
+              <h4>{{data.scheduled_maintenance.count}}</h4>
             </div>
           </div>
         </div>
@@ -74,60 +74,18 @@
         <div class="maintenace-list">
           <h4>Maintenance Schedules</h4>
 
+          {% for scheduled in data.scheduled_maintenance %}
           <div class="tile">
             <div class="tile-start">
-              <p>GJ</p>
+              <p>{{scheduled.customer.get_initials}}</p>
             </div>
             <div class="tile-body">
-              <p>Maxime et aperiam.</p>
-              <p class="text-muted">22:00 - 12th March</p>
+              <p>{{scheduled.customer.fullname}}</p>
+              <p class="text-muted">{{scheduled.customer.created_at}}</p>
             </div>
           </div>
-          <div class="tile">
-            <div class="tile-start">
-              <p>GJ</p>
-            </div>
-            <div class="tile-body">
-              <p>Maxime et aperiam.</p>
-              <p class="text-muted">22:00 - 12th March</p>
-            </div>
-          </div>
-          <div class="tile">
-            <div class="tile-start">
-              <p>GJ</p>
-            </div>
-            <div class="tile-body">
-              <p>Maxime et aperiam.</p>
-              <p class="text-muted">22:00 - 12th March</p>
-            </div>
-          </div>
-          <div class="tile">
-            <div class="tile-start">
-              <p>GJ</p>
-            </div>
-            <div class="tile-body">
-              <p>Maxime et aperiam.</p>
-              <p class="text-muted">22:00 - 12th March</p>
-            </div>
-          </div>
-          <div class="tile">
-            <div class="tile-start">
-              <p>GJ</p>
-            </div>
-            <div class="tile-body">
-              <p>Maxime et aperiam.</p>
-              <p class="text-muted">22:00 - 12th March</p>
-            </div>
-          </div>
-          <div class="tile">
-            <div class="tile-start">
-              <p>GJ</p>
-            </div>
-            <div class="tile-body">
-              <p>Maxime et aperiam.</p>
-              <p class="text-muted">22:00 - 12th March</p>
-            </div>
-          </div>
+          {% endfor %}
+          
         </div>
       </div>
     </div> <!-- /ROW -->

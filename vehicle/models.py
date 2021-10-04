@@ -38,7 +38,7 @@ class Customer(models.Model):
   
   @property
   def get_initials(self):
-    name = 'Godfred Dari'
+    name = self.fullname
     first_name_initial = self.fullname[0].upper()
     last_name_index = [i for i in range(len(name)) if name[i] == ' '][0] + 1
     last_name_initial = name[last_name_index]

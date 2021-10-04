@@ -1,18 +1,14 @@
-from vehicle.models import Service
-from django.http.response import JsonResponse
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
-## Signals 
+from vehicle.models import Maintenance
 
 
-def get_request_vehicle(func):
-  def wrapper(request, *args, **kwargs):
-    
-    if request.method == 'GET' and request.is_ajax():
-      if request.GET.get('type') == 'delete':
-        del_service = Service.objects.get(id = request.GET.get('ID'))
-        del_service.delete()
-        _services = Service.objects.all()
-        return JsonResponse({"status": 'success deletion', 'data': list(_services.values())})
-      
-    return func(request, *args, **kwargs)
-  return wrapper
+
+# @receiver(post_save, sender=Maintenance)
+# def update_new_token(sender, instance, created, **kwargs):
+#   if created:
+#     _instance = instance
+#     _instance.token = 'TOKEN-{}'.format(instance.id)
+#     _instance.save()
+

@@ -24,10 +24,10 @@
           {% if customers %}
             {% for customer in customers  %}
               <tr>
-                <td>{{customer.fullname}}</td>
-                <td>{{customer.phone}}</td>
-                <td>{{customer.address}}</td>
-                <td>{{customer.get_vehicle}}</td>
+                <td>{{customer.customer.fullname}}</td>
+                <td>{{customer.customer.phone}}</td>
+                <td>{{customer.customer.address}}</td>
+                <td>{{customer.customer.get_vehicle}}</td>
                 <td class='text-danger'>
                   <button class='btn btn-danger text-white delete-service'  id = "##${customer.id}">
                     <i class='fa fa-trash'></i>
@@ -72,6 +72,7 @@
   <script>
     $('document').ready(function(){
       $('#customer-table').DataTable()
+      $('.paginate_button').hide()
       const modal = document.getElementById('schedule-modal')
       const bs = new bootstrap.Modal(modal)
       bs.show()

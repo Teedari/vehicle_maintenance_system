@@ -7,11 +7,12 @@
 {% block Content %}
   
   <div class="container">
-    <h3 class="display-5 py-4">All Customers</h3>
+    <h3 class="display-5 py-4">Scheduled Customers</h3>
     <div class="card shadow p-4">
       <table id="customer-table" class="table table-striped">
         <thead>
           <tr>
+            <th>#</th>
             <th>Invoices#</th>
             <th>Name</th>
             <th>Phone</th>
@@ -26,19 +27,24 @@
           {% if services_rendered %}
             {% for rendered in services_rendered  %}
               <tr>
+                <td>{{rendered.id}}</td>
                 <td>{{rendered.token}}</td>
                 <td>{{rendered.customer}}</td>
                 <td>{{rendered.contact}}</td>
                 <td>{{rendered.vehicle}}</td>
                 <td>{{rendered.service_detail}}</td>
                 <td>{{rendered.amount}}</td>
-                <td class='text-danger'>
+                <td class='text-danger d-flex'>
                   <a target='blank' href='{% url "pdf_writer:preview" rendered.token %}' class='btn btn-outline-success delete-service'  id = "##${rendered.token}">
                     <i class='fa fa-eye'></i>
                   </a>
-                  <!-- <button class='btn btn-danger text-white delete-service disabled'  id = "##${rendered.token}">
-                    <i class='fa fa-trash'></i>
-                  </button> -->
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    <input class="invisible" type="checkbox" name="token" value="{{rendered.token}}" checked id="">
+                    <button class='btn btn-danger text-white delete-service'  id = "##">
+                      <i class='fa fa-trash'></i>
+                    </button>
+                  </form>
                 </td>
               </tr>
             {% endfor %}
@@ -61,6 +67,7 @@
   <script>
     $('document').ready(function(){
       $('#customer-table').DataTable()
+      $('.paginate_button').hide()
     })
   </script>
 {% endblock Script %}

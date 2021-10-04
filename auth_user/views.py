@@ -25,7 +25,13 @@ def signIn(request):
 
 
 def signOut(request):
-  del request.session['customer']
-  del request.session['count']
-  logout(request)
-  return HttpResponseRedirect(reverse('auth_user:signIn'))
+  try:
+      logout(request)
+      del request.session['customer']
+      del request.session['count']
+  except:
+    return
+  finally:
+    return HttpResponseRedirect(reverse('auth_user:signIn'))
+    
+  # logout(request)

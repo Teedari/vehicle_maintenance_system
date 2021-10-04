@@ -108,7 +108,7 @@
           console.log('Success response: ', res.status)
           alertToast('Vehicle data saved successfully - ' + res.data)
           this.reset();
-
+          window.location.replace(`{% url 'vehicle:register_render_service' %}`)
           init()
         }
 

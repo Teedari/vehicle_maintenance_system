@@ -4,6 +4,7 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from io import BytesIO
 from django.views import View
+from pdf_writer.funcs import customer_pay_in
 from vehicle.models import Maintenance
 # Create your views here.
 
@@ -34,11 +35,9 @@ def view_pdf(request, token:str):
   for i in range(len(_maintenance)):
     _total += _maintenance[i].amount
     
-  print(_maintenance)
-  print('Total: ', _total)
   
   if request.method == 'GET':
-    pdf = render_to_pdf('pdf_writer/pdf_template.html', {'data': _maintenance, 'singleton': _maintenance[0], 'total': _total})
+    pdf = render_to_pdf('pdf_writer/pdf_template.html', {'data': _maintenance, 'singleton': _maintenance[0], 'total': _total, 'subtotal': customer_pay_in(70, _total)})
   
   return HttpResponse(pdf, content_type='application/pdf')
   

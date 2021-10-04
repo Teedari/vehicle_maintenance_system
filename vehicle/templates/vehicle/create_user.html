@@ -1,0 +1,33 @@
+{% extends "admin_base.html" %}
+
+{% block Title %}
+  Register Vehicle - User Creation
+{% endblock Title %}
+
+{% block Content %}
+  
+  <div class="container">
+    <h3 class="display-3">Create new user</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card p-4">
+          <form action="" method="post">
+            {% csrf_token %}
+            {{form}}
+            <br>
+            <button type="submit" class="btn btn-primary">Register user</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock Content %}
+
+{% block Script %}
+  <script>
+    $(document).ready(function(){
+      $('input').addClass('form-control')
+      $('.helptext').hide()
+    })
+  </script>
+{% endblock Script %}
