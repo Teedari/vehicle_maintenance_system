@@ -29,9 +29,13 @@
                 <td>{{customer.customer.address}}</td>
                 <td>{{customer.customer.get_vehicle}}</td>
                 <td class='text-danger'>
-                  <button class='btn btn-danger text-white delete-service'  id = "##${customer.id}">
-                    <i class='fa fa-trash'></i>
-                  </button>
+                  <!-- <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="checkbox" name="" id="">
+                    <button class='btn btn-danger text-white delete-service'  id = "##${customer.id}">
+                      <i class='fa fa-trash'></i>
+                    </button>
+                  </form> -->
                 </td>
               </tr>
             {% endfor %}
