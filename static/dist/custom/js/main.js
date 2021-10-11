@@ -32,7 +32,7 @@ $('document').ready(function(){
       domStr += `
         <tr>
           <td>${obj.service}</td>
-          <td>${obj.cost}</td>
+          <td>GHc${obj.cost}</td>
           <td></td>
         </tr>
       `
@@ -40,7 +40,7 @@ $('document').ready(function(){
   
     const total_cost = state.service_data.reduce((prev, next) => parseInt(next.cost) + prev,0)
 
-    $('#table-total')[0].textContent = total_cost
+    $('#table-total span')[0].textContent = total_cost
     $('#maintenance-table tbody').html(domStr)
 
     toggelSubmitButton()
@@ -71,7 +71,7 @@ $('document').ready(function(){
       var data = []
 
       if(this.classList.contains('activated')){
-        data = [...state.service_data, new Maintenance(this.id, $(`#${this.id}  #service-text`).text(), $(`#${this.id}  #service-cost`).text())]
+        data = [...state.service_data, new Maintenance(this.id, $(`#${this.id}  #service-text`).text(), $(`#${this.id}  #service-cost span`).text())]
       }else{
         data = state.service_data.filter( service => service.id !== this.id )
       }
@@ -105,6 +105,7 @@ $('document').ready(function(){
         notifier.info('Service rendered successfully')
         //Show print
         $('#print-btn').removeClass('d-none')
+        $('#payment-btn').removeClass('d-none')
         //change print url
         printUrlChangeHandler(res.data.token);
       },
