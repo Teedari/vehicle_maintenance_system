@@ -37,6 +37,11 @@
            <label for="" class="" style="font-size: 1.5rem;">Print <i class="fa fa-print"></i> </label>
 
         </a>
+        <a href="{% url 'payment:home'  %}" id="payment-btn" class="btn btn-outline-warning  my-2 shadow p-4 d-flex flex-column align-items-center gap-2 text-center customer-card d-none">
+    
+           <label for="" class="" style="font-size: 1.5rem;">Make payment <i class="fa fa-money"></i> </label>
+
+        </a>
       </div>
       </div>
       <!-- sdf -->
@@ -56,7 +61,7 @@
                   <h6><b>Service:</b></h6>
                   <p id="service-text" class="py-2">{{service.text}}</p>
                   <div class="d-flex justify-content-between align-items-center">
-                    <small id="service-cost">GHc{{service.cost}}</small>
+                    <small id="service-cost">GHc<span>{{service.cost}}</span></small>
                     <button class="btn btn-default ml-auto">
                       <i class="fa fa-check"></i>
                     </button>
@@ -88,7 +93,7 @@
                   <div class="d-flex justify-content-between">
   
                     <h5>Total: </h5>
-                    <p id="table-total">0</p>
+                    <p id="table-total">GHc<span>0</span></p>
                   </div>
                   {% if data.customer %}
                     <div class='py-2'>

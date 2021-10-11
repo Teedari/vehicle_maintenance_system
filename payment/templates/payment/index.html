@@ -1,0 +1,27 @@
+{% extends "admin_base.html" %}
+
+
+{% block Content %}
+  <div class='d-flex align-items-center justify-content-center' style='width:100%; height: 90vh;'>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card shadow p-4">
+          <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-primary mt-4">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock Content %}
+
+
+{% block Script %}
+  <script>
+    $(document).ready(function(){
+      $('input').addClass('form-control')
+    })
+  </script>
+{% endblock Script %}
