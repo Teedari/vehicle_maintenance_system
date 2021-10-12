@@ -32,12 +32,12 @@
             <blockquote>{{data.customer.get_vehicle}}</blockquote>
           </small>
         </div>
-        <a target='blank' href="{% url 'pdf_writer:preview' 'token'  %}" id="print-btn" class="btn btn-outline-primary  my-2 shadow p-4 d-flex flex-column align-items-center gap-2 text-center customer-card d-none">
+        <a target='blank' href="{% url 'pdf_writer:preview' 'token'  %}" id="print-btn" class="btn btn-outline-primary  my-2 shadow p-4 d-flex flex-column align-items-center gap-2 text-center customer-card">
     
            <label for="" class="" style="font-size: 1.5rem;">Print <i class="fa fa-print"></i> </label>
 
         </a>
-        <a href="{% url 'payment:home'  %}" id="payment-btn" class="btn btn-outline-warning  my-2 shadow p-4 d-flex flex-column align-items-center gap-2 text-center customer-card d-none">
+        <a href="{% url 'payment:home'  %}" id="payment-btn" class="btn btn-outline-warning  my-2 shadow p-4 d-flex flex-column align-items-center gap-2 text-center customer-card">
     
            <label for="" class="" style="font-size: 1.5rem;">Make payment <i class="fa fa-money"></i> </label>
 
@@ -97,6 +97,7 @@
                   </div>
                   {% if data.customer %}
                     <div class='py-2'>
+                      <input type="checkbox" checked name="url" id="get-url" value='{% url "vehicle:render_service" %}' class="invisible">
                       <button id="service-submit" class="btn btn-outline-primary">submit</button>
                     </div>
                   {% endif %}
@@ -110,3 +111,4 @@
     {% endif %}
   </div>
 {% endblock Content %}
+

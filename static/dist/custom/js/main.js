@@ -89,7 +89,10 @@ $('document').ready(function(){
 
   /*** submit maintenance ***/
   // FIXME: change this url and use the hosted url during deployment
-  const postUrl = 'http://127.0.0.1:8000/vehicle/customers/render/service'
+  // const desktopBase = 'http://127.0.0.1:55497/'
+  // const webBase = 'http://127.0.0.1:8000/'
+  // const postUrl = `${desktopBase}vehicle/customers/render/service`
+  const postUrl = $('#get-url').val()
   
   let notifier = new AWN();
 
@@ -146,6 +149,7 @@ $('document').ready(function(){
     $('#service-submit').addClass('disabled')
 
     $('#print-btn').addClass('d-none')
+    $('#payment-btn').addClass('d-none')
   }
 
   /*** INIT ***/

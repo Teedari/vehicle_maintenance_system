@@ -1,9 +1,10 @@
+{% load static %}
 {% include "includes/header.html" %}
 
 <title>
   Vehicle Management - {% block Title %}{% endblock Title %} 
 </title>
-
+<script defer src="{% static 'dist/custom/js/flaskgui.js' %}"></script>
 </head>
 
 {% block Style %}
